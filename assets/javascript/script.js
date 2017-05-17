@@ -54,44 +54,134 @@ function checkGuess(you, opp){
 
 		//rock
 		if (you == 0){
-			if (opp == 2||opp == 3){
-				win();
-			} else {
-				lose();
-			}
+			switch (opp){
+				case 2:
+					$("h4").text("Rock crushes Scissors")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "green")
+					win();
+				case 3:
+					$("h4").text("Rock crushes Lizard")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "green")
+					win();
+				case 1:
+					$("h4").text("Paper covers Rock")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "red")
+					lose()
+				case 4:
+					$("h4").text("Spock vaporizes Rock")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "red")
+					lose()
+			}//end of switch
 		}//end of rock
 
+		//paper
 		if (you == 1){
-			if (opp == 0 || opp == 4){
-				win();
-			} else {
-				lose();
-			}
+			switch (opp){
+				case 0:
+					$("h4").text("Paper covers Rock")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "green")
+					win();
+				case 4:
+					$("h4").text("Paper disproves Spock")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "green")
+					win();
+				case 2:
+					$("h4").text("Scissors cuts Paper")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "red")
+					lose()
+				case 3:
+					$("h4").text("Lizard eats Paper")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "red")
+					lose()
+			}//end of switch
 		}//end of paper
 
+		//scissors
 		if (you == 2){
-			if (opp == 1 || opp == 3){
-				win();
-			} else {
-				lose();
-			}
+			switch (opp){
+				case 1:
+					$("h4").text("Scissors cuts Paper")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "green")
+					win();
+				case 3:
+					$("h4").text("Scissors decapitates Lizard")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "green")
+					win();
+				case 0:
+					$("h4").text("Rock crushes Scissors")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "red")
+					lose()
+				case 4:
+					$("h4").text("Spock crushes Scissors")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "red")
+					lose()
+			}//end of switch
 		}//end of scissors
 
+		//lizard
 		if (you == 3){
-			if (opp == 2 || opp == 4){
-				win();
-			} else {
-				lose();
-			}
+			switch (opp){
+				case 1:
+					$("h4").text("Lizard eats Paper")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "green")
+					win();
+				case 4:
+					$("h4").text("Lizard poisons Spock")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "green")
+					win();
+				case 0:
+					$("h4").text("Rock crushes Lizard")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "red")
+					lose()
+				case 2:
+					$("h4").text("Scissors decapitates Lizard")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "red")
+					lose()
+			}//end of switch
 		}//end of lizard
 
+		//spock
 		if (you == 4){
-			if (opp == 0 || opp == 2){
-				win();
-			} else {
-				lose();
-			}
+			switch (opp){
+				case 0:
+					$("h4").text("Spock vaporizes Rock")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "green")
+					win();
+				case 2:
+					$("h4").text("Spock crushes Scissors")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "green")
+					win();
+				case 1:
+					$("h4").text("Paper disproves Spock")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "red")
+					lose()
+				case 3:
+					$("h4").text("Lizard poisons Spock")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "red")
+					lose()
+			}//end of switch
 		}//end of spock
+		
 	}//end of check
 }//end of function
 
@@ -101,17 +191,13 @@ function tie() {
 	result = 2;
 }
 function win() {
-	$("h4").text("Win!!")
-	$("h4").css("font-weight", "bold")
-	$("h4").css("color", "green")
+	
 	result = 0;
 	winCount++;
 	$("#winHere").text(winCount)
 }
 function lose() {
-	$("h4").text("Lose")
-	$("h4").css("font-weight", "bold")
-	$("h4").css("color", "red")
+	
 	result = 1;
 	lossCount++;
 	$("#lossHere").text(lossCount)

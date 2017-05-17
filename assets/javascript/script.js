@@ -10,12 +10,41 @@ var resultArray = ["Won", "Lost", "Draw"]
 
 var winCount = 0;
 var lossCount = 0
-//superfluos hover feature should do a fade in and out
+
+var playerCount;
+
+$(".gameBtn").css("visibility", "hidden")
+$(".gameArrow").css("visibility", "hidden");	
+
+player()
+
+//function that determines single player and multiplayer
+function player (){
+
+
+	$("#gameBoard").append($("<button id=single>Single Player</button>"))
+	$("#gameBoard").append($("<button id=multi>Multiplayer</button>"))
+
+	$("#single").on("click", function(){
+		playerCount = 1;
+		$("#single").remove()
+		$("#multi").remove()
+		$(".gameBtn").css("visibility", "visible")
+		$(".gameArrow").css("visibility", "visible");	
+	})
+
+	$("#multi").on("click", function(){
+		playerCount = 2;
+		$("#multi").text("Still being worked on.")
+	})
+}
+
+//superfluos hover feature
 $(".gameBtn").hover(function() {
-	$(".gameArrow").css("visibility", "hidden");
-	$("#"+$(this).context.id+"Beats").css("visibility", "visible");
+	$(".gameArrow").css("opacity", ".2");
+	$("#"+$(this).context.id+"Beats").css("opacity", "1");
 }, function() {
-	$(".gameArrow").css("visibility", "visible");
+	$(".gameArrow").css("opacity", "1");
 });
 
 //add a single player multiplayer here
@@ -32,18 +61,20 @@ function play () {
 	$("#userIcon").append($("<img class=icon src=assets/images/"+guess+"/"+guess+"Icon.png>"))
 	$("#userIcon").append($("<h5>"+guess+"</h5>"))
 	
+	if (playerCount==1){
+		setTimeout(function(){
 
-	setTimeout(function(){
+			var compPick = Math.floor(Math.random()*5)
+			compGuess = arrayPick[compPick]
 
-		var compPick = Math.floor(Math.random()*5)
-		compGuess = arrayPick[compPick]
-
-		$("#oppIcon").append($("<img class=icon src=assets/images/"+compGuess+"/"+compGuess+"Icon.png>"))
-		$("#oppIcon").append($("<h5>"+compGuess+"</h5>"))
-		checkGuess(userGuess, compPick);
+			$("#oppIcon").append($("<img class=icon src=assets/images/"+compGuess+"/"+compGuess+"Icon.png>"))
+			$("#oppIcon").append($("<h5>"+compGuess+"</h5>"))
+			checkGuess(userGuess, compPick);
 		}, 1000)
 
-	setTimeout(setNext, 3000)
+		setTimeout(setNext, 3000)
+	};
+
 };//end of play function
 
 function checkGuess(you, opp){
@@ -54,44 +85,154 @@ function checkGuess(you, opp){
 
 		//rock
 		if (you == 0){
-			if (opp == 2||opp == 3){
-				win();
-			} else {
-				lose();
-			}
+			switch (opp){
+				case 2:
+					$("h4").text("Rock crushes Scissors")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "green")
+					win();
+					break;
+				case 3:
+					$("h4").text("Rock crushes Lizard")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "green")
+					win();
+					break;
+				case 1:
+					$("h4").text("Paper covers Rock")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "red")
+					lose()
+					break;
+				case 4:
+					$("h4").text("Spock vaporizes Rock")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "red")
+					lose()
+					break;
+			}//end of switch
 		}//end of rock
 
+		//paper
 		if (you == 1){
-			if (opp == 0 || opp == 4){
-				win();
-			} else {
-				lose();
-			}
+			switch (opp){
+				case 0:
+					$("h4").text("Paper covers Rock")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "green")
+					win();
+					break;
+				case 4:
+					$("h4").text("Paper disproves Spock")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "green")
+					win();
+					break;
+				case 2:
+					$("h4").text("Scissors cuts Paper")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "red")
+					lose()
+					break;
+				case 3:
+					$("h4").text("Lizard eats Paper")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "red")
+					lose()
+					break;
+			}//end of switch
 		}//end of paper
 
+		//scissors
 		if (you == 2){
-			if (opp == 1 || opp == 3){
-				win();
-			} else {
-				lose();
-			}
+			switch (opp){
+				case 1:
+					$("h4").text("Scissors cuts Paper")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "green")
+					win();
+					break;
+				case 3:
+					$("h4").text("Scissors decapitates Lizard")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "green")
+					win();
+					break;
+				case 0:
+					$("h4").text("Rock crushes Scissors")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "red")
+					lose()
+					break;
+				case 4:
+					$("h4").text("Spock crushes Scissors")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "red")
+					lose()
+					break;
+			}//end of switch
 		}//end of scissors
 
+		//lizard
 		if (you == 3){
-			if (opp == 2 || opp == 4){
-				win();
-			} else {
-				lose();
-			}
+			switch (opp){
+				case 1:
+					$("h4").text("Lizard eats Paper")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "green")
+					win();
+					break;
+				case 4:
+					$("h4").text("Lizard poisons Spock")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "green")
+					win();
+					break;
+				case 0:
+					$("h4").text("Rock crushes Lizard")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "red")
+					lose()
+					break;
+				case 2:
+					$("h4").text("Scissors decapitates Lizard")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "red")
+					lose()
+					break;
+			}//end of switch
 		}//end of lizard
 
+		//spock
 		if (you == 4){
-			if (opp == 0 || opp == 2){
-				win();
-			} else {
-				lose();
-			}
+			switch (opp){
+				case 0:
+					$("h4").text("Spock vaporizes Rock")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "green")
+					win();
+					break;
+				case 2:
+					$("h4").text("Spock crushes Scissors")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "green")
+					win();
+					break;
+				case 1:
+					$("h4").text("Paper disproves Spock")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "red")
+					lose()
+					break;
+				case 3:
+					$("h4").text("Lizard poisons Spock")
+					$("h4").css("font-weight", "bold")
+					$("h4").css("color", "red")
+					lose()
+					break;
+			}//end of switch
 		}//end of spock
+
 	}//end of check
 }//end of function
 
@@ -101,45 +242,48 @@ function tie() {
 	result = 2;
 }
 function win() {
-	$("h4").text("Win!!")
-	$("h4").css("font-weight", "bold")
-	$("h4").css("color", "green")
+	console.log("win")
 	result = 0;
 	winCount++;
 	$("#winHere").text(winCount)
 }
 function lose() {
-	$("h4").text("Lose")
-	$("h4").css("font-weight", "bold")
-	$("h4").css("color", "red")
+	console.log("lose")
 	result = 1;
 	lossCount++;
 	$("#lossHere").text(lossCount)
 }
 
 function setNext() {
+
+	//reset ready
 	$("h4").text("Ready")
 	$("h4").css("font-weight", "normal")
 	$("h4").css("color", "black")
 
+	//add past plays
 	var log = $("<div class=record>")
 	log.append($("<img class=icon src=assets/images/"+guess+"/"+guess+"Icon.png>"))
 	log.append(resultArray[result])
 	log.append($("<img class=icon src=assets/images/"+compGuess+"/"+compGuess+"Icon.png>"))	
 	$("#pastPlays").prepend(log)
 
+	//empty icons from current play
 	$("#oppIcon").empty()
 	$("#userIcon").empty()
 
-	$(".gameArrow").css("visibility", "visible")
+	//reset gameboard diagram
+	$(".gameArrow").css("opacity", "1")
 
+	//return hover feature
 	$(".gameBtn").hover(function() {
-	$(".gameArrow").css("visibility", "hidden");
-	$("#"+$(this).context.id+"Beats").css("visibility", "visible");
+	$(".gameArrow").css("opacity", ".2");
+	$("#"+$(this).context.id+"Beats").css("opacity", "1");
 	}, function() {
-	$(".gameArrow").css("visibility", "visible");
+	$(".gameArrow").css("opacity", "1");
 	});
 
+	//return on click
 	$(".gameBtn").on("click", play)
 }
 

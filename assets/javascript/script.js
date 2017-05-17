@@ -10,12 +10,13 @@ var resultArray = ["Won", "Lost", "Draw"]
 
 var winCount = 0;
 var lossCount = 0
-//superfluos hover feature should do a fade in and out
+
+//superfluos hover feature
 $(".gameBtn").hover(function() {
-	$(".gameArrow").css("visibility", "hidden");
-	$("#"+$(this).context.id+"Beats").css("visibility", "visible");
+	$(".gameArrow").css("opacity", ".2");
+	$("#"+$(this).context.id+"Beats").css("opacity", "1");
 }, function() {
-	$(".gameArrow").css("visibility", "visible");
+	$(".gameArrow").css("opacity", "1");
 });
 
 //add a single player multiplayer here
@@ -60,21 +61,25 @@ function checkGuess(you, opp){
 					$("h4").css("font-weight", "bold")
 					$("h4").css("color", "green")
 					win();
+					break;
 				case 3:
 					$("h4").text("Rock crushes Lizard")
 					$("h4").css("font-weight", "bold")
 					$("h4").css("color", "green")
 					win();
+					break;
 				case 1:
 					$("h4").text("Paper covers Rock")
 					$("h4").css("font-weight", "bold")
 					$("h4").css("color", "red")
 					lose()
+					break;
 				case 4:
 					$("h4").text("Spock vaporizes Rock")
 					$("h4").css("font-weight", "bold")
 					$("h4").css("color", "red")
 					lose()
+					break;
 			}//end of switch
 		}//end of rock
 
@@ -86,21 +91,25 @@ function checkGuess(you, opp){
 					$("h4").css("font-weight", "bold")
 					$("h4").css("color", "green")
 					win();
+					break;
 				case 4:
 					$("h4").text("Paper disproves Spock")
 					$("h4").css("font-weight", "bold")
 					$("h4").css("color", "green")
 					win();
+					break;
 				case 2:
 					$("h4").text("Scissors cuts Paper")
 					$("h4").css("font-weight", "bold")
 					$("h4").css("color", "red")
 					lose()
+					break;
 				case 3:
 					$("h4").text("Lizard eats Paper")
 					$("h4").css("font-weight", "bold")
 					$("h4").css("color", "red")
 					lose()
+					break;
 			}//end of switch
 		}//end of paper
 
@@ -112,21 +121,25 @@ function checkGuess(you, opp){
 					$("h4").css("font-weight", "bold")
 					$("h4").css("color", "green")
 					win();
+					break;
 				case 3:
 					$("h4").text("Scissors decapitates Lizard")
 					$("h4").css("font-weight", "bold")
 					$("h4").css("color", "green")
 					win();
+					break;
 				case 0:
 					$("h4").text("Rock crushes Scissors")
 					$("h4").css("font-weight", "bold")
 					$("h4").css("color", "red")
 					lose()
+					break;
 				case 4:
 					$("h4").text("Spock crushes Scissors")
 					$("h4").css("font-weight", "bold")
 					$("h4").css("color", "red")
 					lose()
+					break;
 			}//end of switch
 		}//end of scissors
 
@@ -138,21 +151,25 @@ function checkGuess(you, opp){
 					$("h4").css("font-weight", "bold")
 					$("h4").css("color", "green")
 					win();
+					break;
 				case 4:
 					$("h4").text("Lizard poisons Spock")
 					$("h4").css("font-weight", "bold")
 					$("h4").css("color", "green")
 					win();
+					break;
 				case 0:
 					$("h4").text("Rock crushes Lizard")
 					$("h4").css("font-weight", "bold")
 					$("h4").css("color", "red")
 					lose()
+					break;
 				case 2:
 					$("h4").text("Scissors decapitates Lizard")
 					$("h4").css("font-weight", "bold")
 					$("h4").css("color", "red")
 					lose()
+					break;
 			}//end of switch
 		}//end of lizard
 
@@ -164,24 +181,28 @@ function checkGuess(you, opp){
 					$("h4").css("font-weight", "bold")
 					$("h4").css("color", "green")
 					win();
+					break;
 				case 2:
 					$("h4").text("Spock crushes Scissors")
 					$("h4").css("font-weight", "bold")
 					$("h4").css("color", "green")
 					win();
+					break;
 				case 1:
 					$("h4").text("Paper disproves Spock")
 					$("h4").css("font-weight", "bold")
 					$("h4").css("color", "red")
 					lose()
+					break;
 				case 3:
 					$("h4").text("Lizard poisons Spock")
 					$("h4").css("font-weight", "bold")
 					$("h4").css("color", "red")
 					lose()
+					break;
 			}//end of switch
 		}//end of spock
-		
+
 	}//end of check
 }//end of function
 
@@ -191,41 +212,48 @@ function tie() {
 	result = 2;
 }
 function win() {
-	
+	console.log("win")
 	result = 0;
 	winCount++;
 	$("#winHere").text(winCount)
 }
 function lose() {
-	
+	console.log("lose")
 	result = 1;
 	lossCount++;
 	$("#lossHere").text(lossCount)
 }
 
 function setNext() {
+
+	//reset ready
 	$("h4").text("Ready")
 	$("h4").css("font-weight", "normal")
 	$("h4").css("color", "black")
 
+	//add past plays
 	var log = $("<div class=record>")
 	log.append($("<img class=icon src=assets/images/"+guess+"/"+guess+"Icon.png>"))
 	log.append(resultArray[result])
 	log.append($("<img class=icon src=assets/images/"+compGuess+"/"+compGuess+"Icon.png>"))	
 	$("#pastPlays").prepend(log)
 
+	//empty icons from current play
 	$("#oppIcon").empty()
 	$("#userIcon").empty()
 
-	$(".gameArrow").css("visibility", "visible")
+	//reset gameboard diagram
+	$(".gameArrow").css("opacity", "1")
 
+	//return hover feature
 	$(".gameBtn").hover(function() {
-	$(".gameArrow").css("visibility", "hidden");
-	$("#"+$(this).context.id+"Beats").css("visibility", "visible");
+	$(".gameArrow").css("opacity", ".2");
+	$("#"+$(this).context.id+"Beats").css("opacity", "1");
 	}, function() {
-	$(".gameArrow").css("visibility", "visible");
+	$(".gameArrow").css("opacity", "1");
 	});
 
+	//return on click
 	$(".gameBtn").on("click", play)
 }
 

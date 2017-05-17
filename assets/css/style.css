@@ -47,6 +47,7 @@ h1 {
 	position: absolute;
 	width: 555px;
 	z-index: 1;
+	transition: .2s;
 }
 
 #rock{

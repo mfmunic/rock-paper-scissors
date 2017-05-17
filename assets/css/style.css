@@ -1,0 +1,140 @@
+html, body{
+		height: 100%;
+}
+
+body {
+	background-color: gray;
+}
+
+header {
+	background-color: white;
+	box-shadow: 0 0 5px black;
+	top: 0;
+	height: 70px;
+	padding-top: 10px;
+	margin-top: 0;
+	margin-bottom: 10px;
+	z-index: 10;
+}
+
+#headerContainer {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+h1 {
+	margin: 0px;
+}
+
+
+#game{
+	position:relative;
+	bottom:0px;
+	height: 600px;
+	width: 100%;
+	background-color: #1d6eb0;
+/*	background: url("../images/rockkill.png") no-repeat top center;
+	background-size: 555px;*/
+}
+
+.gameBtn{
+	position: absolute;
+	height: 150px;
+	z-index: 3;
+}
+
+.gameArrow{
+	position: absolute;
+	width: 555px;
+	z-index: 1;
+}
+
+#rock{
+	top: 35px;
+	left: 201px;
+}
+
+#paper{
+	top: 143px;
+	left: 348px;
+}
+
+#scissors{
+	top: 318px;
+	left: 295px;
+}
+
+#lizard{
+	top: 317px;
+	left: 110px;
+}
+
+#spock{
+	top: 143px;
+	left: 54px;
+}
+
+#log{
+	position: absolute;
+	bottom: 0;
+	height: 100px;
+	width: 100%;
+	background-color: white;
+	border-top: 1px solid black;
+	overflow: hidden;
+	padding-right: 50px;
+}
+
+#pastPlays div img{
+	height: 60px;
+	margin-bottom: 20px;
+}
+
+
+.record {
+	display: inline;
+	margin-left:3px;
+
+}
+#currentPlay{
+	height: 600px;
+	width: 100%;
+	background-color: white;
+}
+
+.col-xs-6{
+	height: 250px;
+	padding: 0px;
+}
+
+hr{
+	margin: 0 0 2px 0;
+	border: 1px solid gray;
+}
+
+#ready{
+	text-align: center;
+}
+
+#winHere {
+	font-size: 25px;
+	font-weight: bold;
+	margin-left: 6px;
+}
+
+#lossHere {
+	font-size: 25px;
+	font-weight: bold;
+	margin-right: 6px;
+}
+
+#yourGuess {
+	text-align: center;
+}
+
+#oppGuess{
+	text-align: center;
+}
+.icon {
+	height: 150px;
+}

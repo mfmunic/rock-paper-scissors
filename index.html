@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	
+	<!-- reset file -->
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Bootswatch Styling for Improving the Aesthetics -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css">
+
+	<!-- Font Awesome CSS Icons (For cool glyphicons) -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+	<!-- my own css -->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	
+</head>
+<body>
+	<header>
+		<div id=headerContainer>
+			<h1>Rock, Paper, Scissors, Lizard, Spock</h1>
+		</div>
+	</header>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6">
+				<section id="game">
+					<div id="gameBoard">
+						<img class="gameBtn" id="rock" data-value=0 src="assets/images/rock/rock.png">
+						<img class="gameArrow" id="rockBeats" src="assets/images/rock/rockbeats.png">
+						<img class="gameBtn" id="paper" data-value=1 src="assets/images/paper/paper.png">
+						<img class="gameArrow" id="paperBeats" src="assets/images/paper/paperbeats.png">
+						<img class="gameBtn" id="scissors" data-value=2 src="assets/images/scissors/scissors.png">
+						<img class="gameArrow" id="scissorsBeats" src="assets/images/scissors/scissorsbeats.png">
+						<img class="gameBtn" id="lizard" data-value=3 src="assets/images/lizard/lizard.png">
+						<img class="gameArrow" id="lizardBeats" src="assets/images/lizard/lizardbeats.png">
+						<img class="gameBtn" id="spock" data-value=4 src="assets/images/spock/spock.png">
+						<img class="gameArrow" id="spockBeats" src="assets/images/spock/spockbeats.png">
+					</div>
+					<div id="log">
+						<p>Past plays:</p>
+						<div id="pastPlays">
+						</div>
+					</div>
+				</section>
+			</div>
+
+			<div class="col-lg-6">
+				<aside id="currentPlay">
+					<div class="row">
+						<div class="col-xs-6">
+							<div id="yourGuess">
+								<h3>You</h3>
+								<div id="userIcon">
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xs-6" id="oppGuess">
+								<h3>Opponent</h3>
+								<div id="oppIcon">
+								</div>
+						</div>
+					</div>
+
+					<hr>
+
+					<div class="row">
+						<div class="col-lg-1">
+							<h5 id="winHere"></h5>
+						</div>
+
+						<div class="col-lg-3">
+						</div>
+
+						<div class="col-lg-4" id="ready">
+							<h4>Ready</h4>
+						</div>
+
+						<div class="col-lg-3">
+						</div>
+						
+						<div class="col-lg-1">
+							<h5 id="lossHere"></h5>
+						</div>
+					</div>
+					
+					<hr>
+					
+					<div id="chat">
+						<p>Smack Talk</p>
+					</div>
+				</aside>
+			</div>
+		</div>
+	
+	</div>
+<!-- jQuery JS -->
+<script src="https://code.jquery.com/jquery.js"></script>
+
+<!-- Code to the Javascript File -->
+<script type="text/javascript" src="assets/javascript/script.js">
+</script>
+
+</body>
+</html>

@@ -11,6 +11,34 @@ var resultArray = ["Won", "Lost", "Draw"]
 var winCount = 0;
 var lossCount = 0
 
+var playerCount;
+
+$(".gameBtn").css("visibility", "hidden")
+$(".gameArrow").css("visibility", "hidden");	
+
+player()
+
+//function that determines single player and multiplayer
+function player (){
+
+
+	$("#gameBoard").append($("<button id=single>Single Player</button>"))
+	$("#gameBoard").append($("<button id=multi>Multiplayer</button>"))
+
+	$("#single").on("click", function(){
+		playerCount = 1;
+		$("#single").remove()
+		$("#multi").remove()
+		$(".gameBtn").css("visibility", "visible")
+		$(".gameArrow").css("visibility", "visible");	
+	})
+
+	$("#multi").on("click", function(){
+		playerCount = 2;
+		$("#multi").text("Still being worked on.")
+	})
+}
+
 //superfluos hover feature
 $(".gameBtn").hover(function() {
 	$(".gameArrow").css("opacity", ".2");
@@ -33,18 +61,20 @@ function play () {
 	$("#userIcon").append($("<img class=icon src=assets/images/"+guess+"/"+guess+"Icon.png>"))
 	$("#userIcon").append($("<h5>"+guess+"</h5>"))
 	
+	if (playerCount==1){
+		setTimeout(function(){
 
-	setTimeout(function(){
+			var compPick = Math.floor(Math.random()*5)
+			compGuess = arrayPick[compPick]
 
-		var compPick = Math.floor(Math.random()*5)
-		compGuess = arrayPick[compPick]
-
-		$("#oppIcon").append($("<img class=icon src=assets/images/"+compGuess+"/"+compGuess+"Icon.png>"))
-		$("#oppIcon").append($("<h5>"+compGuess+"</h5>"))
-		checkGuess(userGuess, compPick);
+			$("#oppIcon").append($("<img class=icon src=assets/images/"+compGuess+"/"+compGuess+"Icon.png>"))
+			$("#oppIcon").append($("<h5>"+compGuess+"</h5>"))
+			checkGuess(userGuess, compPick);
 		}, 1000)
 
-	setTimeout(setNext, 3000)
+		setTimeout(setNext, 3000)
+	};
+
 };//end of play function
 
 function checkGuess(you, opp){

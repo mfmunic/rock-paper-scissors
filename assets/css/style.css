@@ -37,6 +37,22 @@ h1 {
 	background-size: 555px;*/
 }
 
+#single{
+	position: absolute;
+	font-size: 50px;
+	left: 137px;
+	top: 150px;
+	width: 300px;
+}
+
+#multi{
+	position: absolute;
+	font-size: 50px;
+	left: 137px;
+	top: 240px;
+	width: 300px;
+}
+
 .gameBtn{
 	position: absolute;
 	height: 150px;

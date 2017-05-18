@@ -52,12 +52,14 @@ h1 {
 }
 
 .gameBtn{
+	visibility: hidden;
 	position: absolute;
 	height: 150px;
 	z-index: 3;
 }
 
 .gameArrow{
+	visibility: hidden;
 	position: absolute;
 	width: 555px;
 	z-index: 1;

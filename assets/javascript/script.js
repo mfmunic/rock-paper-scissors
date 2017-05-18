@@ -1,5 +1,19 @@
 $(document).ready(function(){
 
+
+// Initialize Firebase
+ var config = {
+    apiKey: "AIzaSyBVCXuzKh8JIiac-T0RF29dMKqKlm5jB84",
+    authDomain: "rpsls-game-c1922.firebaseapp.com",
+    databaseURL: "https://rpsls-game-c1922.firebaseio.com",
+    projectId: "rpsls-game-c1922",
+    storageBucket: "rpsls-game-c1922.appspot.com",
+    messagingSenderId: "660824625426"
+ };
+
+ firebase.initializeApp(config);
+
+
 var arrayPick = ["rock", "paper", "scissors", "lizard", "spock"]
 
 var compGuess
@@ -277,10 +291,10 @@ function setNext() {
 
 	//return hover feature
 	$(".gameBtn").hover(function() {
-	$(".gameArrow").css("opacity", ".2");
-	$("#"+$(this).context.id+"Beats").css("opacity", "1");
+		$(".gameArrow").css("opacity", ".2");
+		$("#"+$(this).context.id+"Beats").css("opacity", "1");
 	}, function() {
-	$(".gameArrow").css("opacity", "1");
+		$(".gameArrow").css("opacity", "1");
 	});
 
 	//return on click

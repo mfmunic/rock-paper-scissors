@@ -36,6 +36,8 @@ var oppGuess
 var compGuess
 var guess
 
+var userName = "You"
+
 var result
 var resultArray = ["Won", "Lost", "Draw"]
 
@@ -95,7 +97,7 @@ function player (){
 
 			if (gameKey != undefined){
 
-				var userName = $("#user-name").val().trim()
+				userName = $("#user-name").val().trim()
 
 				userKey = database.ref().child(gameKey).push({
 					"name":userName,
@@ -109,6 +111,7 @@ function player (){
 
 				database.ref(gameKey+"/"+userKey).on("value", function(snapshotU){
 					userID=snapshotU.val()
+					database.ref(gameKey+"/"+userKey).onDisconnect().remove();
 				})
 
 				database.ref(gameKey).on("value", function(snapshotG){
@@ -123,9 +126,20 @@ function player (){
 								if (oppID.choice.length > 1){
 									oppGuess = oppID.choice
 									oppGuessID = oppID.choiceValue
-									$("#oppIcon").append($("<img class=icon src=assets/images/"+oppGuess+"/"+oppGuess+"Icon.png>"))
-									$("#oppIcon").append($("<h5>"+oppGuess+"</h5>"))
+									$("#oppIcon").html($("<img class=icon id=oppImg src=assets/images/"+oppGuess+"/"+oppGuess+"Icon.png><h5>"+oppGuess+"</h5>"))
+									// $("#oppImg").append($("<h5>"+oppGuess+"</h5>"))
+									$("#oppReadyBox").css("background-color", "green")
 									ifReady();
+								}
+
+								if(oppID.chat.length > 0){
+									var oppChatLine = $("<p>"+oppID.name+": "+oppID.chat+"</p>")
+									$("#chat").prepend(oppChatLine);
+									$("#userChat").val("")
+
+									database.ref().child(gameKey+"/"+oppKey).update({
+										"chat":""
+									})
 								}
 							})
 							database.ref().child(gameKey+"/"+oppKey).update({
@@ -141,14 +155,27 @@ function player (){
 			database.ref(gameKey+"/"+oppKey).on("value", function(snapshotO){
 				oppID = snapshotO.val()
 				if(oppID != null){
+
 					$("#opp-name").text(oppID.name)
+
 					if (oppID.choice.length > 1){
 						oppGuess = oppID.choice
 						oppGuessID = oppID.choiceValue
-						$("#oppIcon").append($("<img class=icon src=assets/images/"+oppGuess+"/"+oppGuess+"Icon.png>"))
-						$("#oppIcon").append($("<h5>"+oppGuess+"</h5>"))
+						$("#oppIcon").html($("<img class=icon id=oppImg src=assets/images/"+oppGuess+"/"+oppGuess+"Icon.png><h5>"+oppGuess+"</h5>"))
+						// $("#oppImg").append($("<h5>"+oppGuess+"</h5>"))
+						$("#oppReadyBox").css("background-color", "green")
 						ifReady();
 					}
+
+					if(oppID.chat.length > 0){
+						var oppChatLine = $("<p>"+oppID.name+": "+oppID.chat+"</p>")
+						$("#chat").prepend(oppChatLine);
+						$("#userChat").val("")
+						database.ref().child(gameKey+"/"+oppKey).update({
+							"chat":""
+						})
+					}
+					
 				}
 			})
 
@@ -185,9 +212,9 @@ if (gameKey != undefined){
     	console.log(players)
 		var gameKeyArr= Object.keys(snapshotC.val())
 
-}, function(errorObject) {
-	 console.log("The read failed: " + errorObject.code);
-});//end of child added
+	}, function(errorObject) {
+	 	console.log("The read failed: " + errorObject.code);
+	});//end of child added
 }
 
 //------------------game value---------------
@@ -200,6 +227,25 @@ database.ref().child(gameKey).on("value", function(snapshotD){
 				  console.log("The read failed: " + errorObject.code);
 	});//end of child value
 }
+
+//------------chat button----------------------------
+$("#submit-chat").on("click", function(event){
+	var chatVal = $("#userChat").val().trim()
+	event.preventDefault();
+	if(chatVal.length > 0){
+		var chatVal = $("#userChat").val().trim()
+		var chatLine = $("<p>"+userName+": "+chatVal+"</p>")
+		$("#chat").prepend(chatLine);
+		$("#userChat").val("")
+
+		if (playerCount == 2){ 
+			database.ref().child(gameKey).child(userKey).update({
+				"chat": chatVal
+			})
+		}
+	}
+})
+
 
 // ---------------------------------------------------------
 //superfluos hover feature
@@ -221,6 +267,7 @@ function play () {
 
 	userGuess = $(this).context.id
 	userGuessID = parseInt($(this).attr("data-value"))
+	$("#userReadyBox").css("background-color", "green")
 
 	//this makes the icon of users guess in the current play div
 	$("#userIcon").append($("<img class=icon src=assets/images/"+userGuess+"/"+userGuess+"Icon.png>"))
@@ -235,6 +282,7 @@ function play () {
 
 			$("#oppIcon").append($("<img class=icon src=assets/images/"+oppGuess+"/"+oppGuess+"Icon.png>"))
 			$("#oppIcon").append($("<h5>"+oppGuess+"</h5>"))
+			$("#oppReadyBox").css("background-color", "green")
 			checkGuess(userGuessID, compPick);
 		}, 1000)
 
@@ -262,7 +310,7 @@ function ifReady(){
 				checkGuess(userGuessID, oppGuessID);
 			}, 1000)
 
-			setTimeout(setNext, 3000)
+			setTimeout(setNext, 4000)
 		} else {
 			return;
 		}
@@ -270,7 +318,7 @@ function ifReady(){
 }
 // --------------------------------------------------------
 function checkGuess(you, opp){
-	
+	$("#oppIcon").css("visibility", "visible")
 	if (you == opp){
 		tie();
 	} else {
@@ -488,6 +536,10 @@ function setNext() {
 		userGuess = ""
 		oppGuess = ""
 	}
+
+	$("#oppIcon").css("visibility", "hidden")
+	$("#oppReadyBox").css("background-color", "white")
+	$("#userReadyBox").css("background-color", "white")
 }
 
 });//end of document ready

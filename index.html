@@ -43,6 +43,14 @@
 						<img class="gameBtn" id="spock" data-value=4 src="assets/images/spock/spock.png">
 						<img class="gameArrow" id="spockBeats" src="assets/images/spock/spockBeats.png">
 					</div>
+
+					<form>
+               	 		<div class="form-group">
+                  			<input class="form-control" id="user-name" type="text" placeholder="User Name">
+                  			<button class="btn btn-primary" id="submit-guess" type="submit">Submit</button>
+                		</div>
+             		</form>
+
 					<div id="log">
 						<p>Past plays:</p>
 						<div id="pastPlays">
@@ -56,14 +64,14 @@
 					<div class="row">
 						<div class="col-xs-6">
 							<div id="yourGuess">
-								<h3>You <span id="winHere"></span></h3>
+								<h3 id="your-name">You</h3>
 								<div id="userIcon">
 								</div>
 							</div>
 						</div>
 
 						<div class="col-xs-6" id="oppGuess">
-								<h3>Opponent <span id="lossHere"></span></h3>
+								<h3 id="opp-name">Opponent </h3>
 								<div id="oppIcon">
 								</div>
 						</div>
@@ -72,23 +80,44 @@
 					<hr>
 
 					<div class="row">
+						
+						<div class="col-lg-2">
+							<div id="winHere">0
+							</div>
+						</div>
 
-						<div class="col-lg-4">
+						<div class="col-lg-2">
+							<div id="userReadyBox">
+							</div>
 						</div>
 
 						<div class="col-lg-4" id="ready">
 							<h4>Ready</h4>
 						</div>
 
-						<div class="col-lg-4">
+						<div class="col-lg-2">
+							<div id="oppReadyBox">
+							</div>
 						</div>
-						
+
+						<div class="col-lg-2">
+							<div id="lossHere">0
+							</div>
+						</div>
+
 					</div>
 					
 					<hr>
 					
-					<div id="chat">
-						<p>Smack Talk</p>
+					<div>
+						<form>
+	               	 		<div class="form-chat">
+	                  			<input class="form-control" id="userChat" type="text" placeholder="Smack Talk">
+	                  			<button class="btn btn-primary" id="submit-chat" type="submit">Chat</button>
+	                		</div>
+             			</form>
+             			<div id="chat">
+             			</div>
 					</div>
 				</aside>
 			</div>

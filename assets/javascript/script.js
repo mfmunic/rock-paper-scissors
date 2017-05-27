@@ -127,7 +127,6 @@ function player (){
 									oppGuess = oppID.choice
 									oppGuessID = oppID.choiceValue
 									$("#oppIcon").html($("<img class=icon id=oppImg src=assets/images/"+oppGuess+"/"+oppGuess+"Icon.png><h5>"+oppGuess+"</h5>"))
-									// $("#oppImg").append($("<h5>"+oppGuess+"</h5>"))
 									$("#oppReadyBox").css("background-color", "green")
 									ifReady();
 								}
@@ -162,7 +161,6 @@ function player (){
 						oppGuess = oppID.choice
 						oppGuessID = oppID.choiceValue
 						$("#oppIcon").html($("<img class=icon id=oppImg src=assets/images/"+oppGuess+"/"+oppGuess+"Icon.png><h5>"+oppGuess+"</h5>"))
-						// $("#oppImg").append($("<h5>"+oppGuess+"</h5>"))
 						$("#oppReadyBox").css("background-color", "green")
 						ifReady();
 					}
@@ -270,8 +268,11 @@ function play () {
 	$("#userReadyBox").css("background-color", "green")
 
 	//this makes the icon of users guess in the current play div
-	$("#userIcon").append($("<img class=icon src=assets/images/"+userGuess+"/"+userGuess+"Icon.png>"))
-	$("#userIcon").append($("<h5>"+userGuess+"</h5>"))
+
+	$("#userIcon").html($("<img class=icon id=oppImg src=assets/images/"+userGuess+"/"+userGuess+"Icon.png><h5>"+userGuess+"</h5>"))
+
+	// $("#userIcon").append($("<img class=icon src=assets/images/"+userGuess+"/"+userGuess+"Icon.png>"))
+	// $("#userIcon").append($("<h5>"+userGuess+"</h5>"))
 	
 	//-------single player game--------------
 	if (playerCount==1){
